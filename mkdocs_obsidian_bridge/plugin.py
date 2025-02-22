@@ -10,9 +10,9 @@ from collections import defaultdict
 from functools import partial
 from pathlib import Path
 
-import mkdocs.utils
 from markdown.extensions.toc import slugify_unicode as md_slugify
-from mkdocs.config import base, config_options as co
+from mkdocs.config import base
+from mkdocs.config import config_options as co
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files as MkDocsFiles
@@ -288,9 +288,9 @@ class ObsidianBridgePlugin(BasePlugin[ObsidianBridgeConfig]):
         else:
             link_filepath = Path(matched_filepath.replace('\\', '/'))
 
-            new_path = self.find_best_path(link_filepath, page_path)
-            # if nothing found, try once again but with ".md" file extension
-            if new_path is None:
+            if any([link_filepath.name.endswith("." + fmt) for fmt in self.OBSIDIAN_FORMATS]):
+                new_path = self.find_best_path(link_filepath, page_path)
+            else:
                 new_suffix = link_filepath.suffix + '.md'
                 new_path = self.find_best_path(link_filepath.with_suffix(new_suffix), page_path)
 
