@@ -38,7 +38,7 @@ class ObsidianBridgePlugin(BasePlugin[ObsidianBridgeConfig]):
     # from https://help.obsidian.md/Files+and+folders/Accepted+file+formats:
     OBSIDIAN_FORMATS = [
         'md',
-        'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp',
+        'png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp', 'avif',
         'mp3', 'webm', 'wav', 'm4a', 'ogg', '3gp', 'flac',
         'mp4', 'webm', 'ogv', 'mov', 'mkv',
         'pdf'
